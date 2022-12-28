@@ -138,10 +138,17 @@ add_action( 'widgets_init', 'restaurantpress_widgets_init' );
  * Enqueue scripts and styles.
  */
 function restaurantpress_scripts() {
+	
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), _S_VERSION );
+	wp_enqueue_style( 'restaurantpress-main', get_template_directory_uri() . '/assets/css/main.css', array(), _S_VERSION );
+	wp_enqueue_style( 'restaurantpress-responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), _S_VERSION );
 	wp_enqueue_style( 'restaurantpress-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'restaurantpress-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'restaurantpress-navigation', get_template_directory_uri() . 'assets/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'popper', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), _S_VERSION, true );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), _S_VERSION, true );
+	wp_enqueue_script( 'restaurantpress-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'restaurantpress-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
